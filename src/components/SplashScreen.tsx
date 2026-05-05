@@ -3,31 +3,31 @@ import { motion } from 'framer-motion'
 
 const logoLetters = 'ravsa'.split('')
 
-// Individual routes for each letter (entry/exit paths)
-const letterRoutes = [
-  { start: { x: -200, y: -150 }, mid: { x: -50, y: 50 }, end: { x: 0, y: 0 } }, // r
-  { start: { x: 300, y: -100 }, mid: { x: 100, y: -20 }, end: { x: 0, y: 0 } }, // a
-  { start: { x: -150, y: 250 }, mid: { x: -80, y: 100 }, end: { x: 0, y: 0 } }, // v
-  { start: { x: 250, y: 200 }, mid: { x: 150, y: 50 }, end: { x: 0, y: 0 } },  // s
-  { start: { x: -300, y: 0 }, mid: { x: -150, y: -50 }, end: { x: 0, y: 0 } }, // a
+// Curved exit routes for each letter
+const exitRoutes = [
+  { x: [0, -120, -400, -800], y: [0, 80, -150, -300], rotate: -15 }, // r
+  { x: [0, 150, 350, 800], y: [0, -100, -50, -200], rotate: 25 },   // a
+  { x: [0, -80, -200, -500], y: [0, 150, 300, 700], rotate: -10 },  // v
+  { x: [0, 200, 450, 900], y: [0, 100, 250, 150], rotate: 20 },    // s
+  { x: [0, -150, -450, -900], y: [0, -50, -150, 50], rotate: -30 }, // a
 ]
 
 export default function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const [particles, setParticles] = useState<Array<{ id: number; angle: number; distance: number }>>([])
 
   useEffect(() => {
-    // Burst particles before exit
+    // Burst particles right before exit
     const burstTimer = setTimeout(() => {
-      const newParticles = Array.from({ length: 20 }, (_, i) => ({
+      const newParticles = Array.from({ length: 25 }, (_, i) => ({
         id: i,
-        angle: (i / 20) * 360,
-        distance: 250 + Math.random() * 300,
+        angle: (i / 25) * 360,
+        distance: 300 + Math.random() * 400,
       }))
       setParticles(newParticles)
-    }, 2800)
+    }, 2400)
 
     // Complete and exit
-    const timer = setTimeout(() => onComplete(), 3200)
+    const timer = setTimeout(() => onComplete(), 3000)
 
     return () => {
       clearTimeout(burstTimer)
@@ -41,71 +41,75 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
       initial={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
+        transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 },
       }}
     >
-      {/* Decorative Distribution Paths (SVG) */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
+      {/* Background radial glow */}
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full bg-white/10"
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: [0.5, 1.2, 1], opacity: [0, 1, 0.8] }}
+        transition={{ duration: 1.5, ease: 'easeOut' }}
+        style={{ filter: 'blur(120px)' }}
+      />
+
+      {/* Decorative Floating Lines (Animated Curves) */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-15" viewBox="0 0 1000 1000" preserveAspectRatio="none">
         <motion.path
-          d="M -100 -100 L 200 300 L 500 -50"
+          d="M -100 200 C 200 100, 400 600, 1100 400"
           stroke="white"
-          strokeWidth="1"
+          strokeWidth="2"
           fill="none"
-          strokeDasharray="5,5"
+          strokeDasharray="10,10"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 2, ease: "linear" }}
+          transition={{ duration: 3, ease: "easeInOut" }}
         />
         <motion.path
-          d="M 1200 800 L 800 400 L 1000 100"
+          d="M 1100 800 C 800 900, 600 400, -100 500"
           stroke="white"
-          strokeWidth="1"
+          strokeWidth="2"
           fill="none"
-          strokeDasharray="5,5"
+          strokeDasharray="10,10"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 2.5, ease: "linear", delay: 0.5 }}
+          transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}
         />
       </svg>
 
-      {/* Background radial pulse */}
-      <motion.div
-        className="absolute w-[400px] h-[400px] rounded-full bg-white/10"
-        initial={{ scale: 0 }}
-        animate={{ scale: [0, 1.2, 0.9, 1.4] }}
-        transition={{ duration: 2, ease: 'easeInOut' }}
-        style={{ filter: 'blur(100px)' }}
-      />
-
       <div className="relative z-10">
-        <div className="flex justify-center text-[72px] md:text-[120px] font-bold text-white lowercase tracking-tight">
+        <div className="flex justify-center text-[80px] md:text-[130px] font-bold text-white lowercase tracking-tighter">
           {logoLetters.map((letter, i) => (
             <motion.span
               key={i}
               initial={{ 
                 opacity: 0, 
-                x: letterRoutes[i].start.x, 
-                y: letterRoutes[i].start.y,
-                filter: 'blur(10px)',
-                scale: 0.5
+                y: 20,
+                filter: 'blur(15px)',
+                scale: 0.8
               }}
               animate={{ 
                 opacity: 1, 
-                x: [letterRoutes[i].start.x, letterRoutes[i].mid.x, 0],
-                y: [letterRoutes[i].start.y, letterRoutes[i].mid.y, 0],
+                y: 0,
                 filter: 'blur(0px)',
                 scale: 1
               }}
               exit={{
                 opacity: 0,
-                x: -letterRoutes[i].start.x * 1.5,
-                y: -letterRoutes[i].start.y * 1.5,
-                filter: 'blur(12px)',
-                transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+                x: exitRoutes[i].x,
+                y: exitRoutes[i].y,
+                rotate: exitRoutes[i].rotate,
+                filter: 'blur(10px)',
+                scale: 0.7,
+                transition: { 
+                  duration: 1.2, 
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: i * 0.05
+                }
               }}
               transition={{
-                duration: 1.2,
-                delay: i * 0.1,
+                duration: 0.8,
+                delay: 0.2 + i * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
               style={{ display: 'inline-block' }}
@@ -120,7 +124,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute w-[4px] h-[4px] bg-white rounded-full shadow-[0_0_10px_white]"
+          className="absolute w-[3px] h-[3px] bg-white rounded-full shadow-[0_0_12px_white]"
           style={{ left: '50%', top: '50%' }}
           initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
           animate={{
@@ -129,7 +133,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
             opacity: 0,
             scale: 0,
           }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 1, ease: 'easeOut' }}
         />
       ))}
     </motion.div>
