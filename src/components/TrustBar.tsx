@@ -46,11 +46,11 @@ const marqueeSuppliers = [...suppliers, ...suppliers, ...suppliers]
 
 export default function TrustBar() {
   return (
-    <section className="bg-[#f1f5f9] w-full py-[32px] overflow-hidden" style={{ boxShadow: 'inset 0 8px 12px -8px rgba(0,0,0,0.08), inset 0 -8px 12px -8px rgba(0,0,0,0.08)' }}>
+    <section className="bg-[#f1f5f9] w-full py-[60px] md:py-[40px] overflow-hidden" style={{ boxShadow: 'inset 0 8px 12px -8px rgba(0,0,0,0.08), inset 0 -8px 12px -8px rgba(0,0,0,0.08)' }}>
       <div className="container-apple mx-auto flex flex-col md:flex-row items-center justify-between gap-[40px]">
         
         {/* Stats with animated counters */}
-        <div className="flex items-center gap-[40px] md:gap-[60px] text-[#1e293b]">
+        <div className="flex flex-wrap justify-center md:justify-start items-center gap-[32px] md:gap-[60px] text-[#1e293b]">
           {stats.map((stat, i) => (
             <motion.div 
               key={i} 
