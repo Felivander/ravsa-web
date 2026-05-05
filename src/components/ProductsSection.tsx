@@ -25,7 +25,6 @@ const itemVariant = {
 export default function ProductsSection() {
   const [activeTab, setActiveTab] = useState(categories[0].id)
   const activeCategory = categories.find(c => c.id === activeTab) || categories[0]
-  const activeIndex = categories.findIndex(c => c.id === activeTab)
 
   return (
     <section id="productos" className="py-[100px] bg-white">
@@ -65,7 +64,7 @@ export default function ProductsSection() {
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
           >
-            {categories.map((cat, i) => (
+            {categories.map((cat) => (
               <motion.button
                 key={cat.id}
                 variants={itemVariant}
@@ -124,7 +123,7 @@ export default function ProductsSection() {
 
             {/* Progress dots */}
             <div className="absolute bottom-[16px] right-[16px] hidden lg:flex gap-[6px] z-10">
-              {categories.map((cat, i) => (
+              {categories.map((cat) => (
                 <motion.button
                   key={cat.id}
                   onClick={() => setActiveTab(cat.id)}
