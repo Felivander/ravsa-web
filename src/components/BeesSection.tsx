@@ -131,7 +131,7 @@ export default function BeesSection() {
           
           {/* Mobile frame with float */}
           <motion.div 
-            className="relative w-[300px] md:w-[340px] h-[600px] md:h-[680px] bg-black border-[8px] border-[#1e293b] shadow-2xl overflow-hidden z-10 rounded-[32px]"
+            className="relative w-[300px] md:w-[340px] h-[600px] md:h-[680px] bg-black border-[10px] border-[#1e293b] shadow-2xl overflow-hidden z-10 rounded-[55px]"
             animate={{
               y: [0, -12, 0],
             }}
