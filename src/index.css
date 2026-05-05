@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design System Tokens ─── */
+:root {
+  /* Colors */
+  --colors-primary: #1A5FFF;
+  --colors-primary-focus: #154ecc;
+  --colors-primary-on-dark: #3b7aff;
+  
+  --colors-canvas: #ffffff;
+  --colors-canvas-parchment: #f8fafc;
+  --colors-surface-pearl: #f1f5f9;
+  
+  --colors-surface-tile-1: #1e293b;
+  --colors-surface-tile-2: #0f172a;
+  --colors-surface-tile-3: #020617;
+  --colors-surface-black: #000000;
+  
+  --colors-ink: #1e293b;
+  --colors-body: #334155;
+  --colors-body-on-dark: #f8fafc;
+  --colors-body-muted: #64748b;
+  --colors-ink-muted-80: #475569;
+  --colors-ink-muted-48: #94a3b8;
+  
+  --colors-divider-soft: rgba(0, 0, 0, 0.08);
+  --colors-hairline: #d2d2d7;
+  
+  /* Spacing */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 17px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 120px; /* Even more space */
+
+  /* Border Radius */
+  --rounded-none: 0px;
+  --rounded-xs: 5px;
+  --rounded-sm: 8px;
+  --rounded-md: 12px;
+  --rounded-lg: 24px;
+  --rounded-pill: 9999px;
+  --rounded-full: 9999px;
+
+  /* Typography Substitutes (Inter) */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Base Reset & Globals ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--colors-ink);
+  background-color: var(--colors-canvas);
+  line-height: 1.47;
+  letter-spacing: -0.022em;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dots Pattern */
+.bg-dots {
+  background-image: radial-gradient(rgba(26, 95, 255, 0.15) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.03em; /* Tighter */
+}
+
+/* ─── Apple Typography Classes ─── */
+.typography-hero-display {
+  font-size: 96px; /* Massive impact */
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.typography-display-lg {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.03em;
+}
+
+.typography-lead {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+
+.typography-body {
+  font-size: 19px; /* Bigger for readability */
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.02em;
+}
+
+.typography-body-strong {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.24;
+}
+
+.typography-caption {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+.typography-nav-link {
+  font-size: 16px; /* Bigger, readable */
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Component Primitives ─── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background-color: var(--colors-primary);
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 400;
+  border-radius: var(--rounded-pill);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: #0077ed;
+  transform: scale(1.02);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background-color: transparent;
+  color: var(--colors-primary);
+  font-size: 19px;
+  font-weight: 400;
+  border-radius: var(--rounded-pill);
+  border: 1.5px solid var(--colors-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--colors-primary);
+  color: white;
+  transform: scale(1.02);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-link {
+  color: var(--colors-primary);
+  text-decoration: none;
+  font-size: 21px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* ─── Layout ─── */
+.section-tile {
+  padding: var(--spacing-section) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.container-apple {
+  width: 100%;
+  max-width: 1068px; /* Standard Apple content width */
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.grid-apple {
+  display: grid;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ─── Elevation ─── */
+.product-shadow {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+.frosted {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(255, 255, 255, 0.72);
+}
+
+/* ─── Animation Keyframes ─── */
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes hero-float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+
+.hero-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.hero-float-slow {
+  animation: hero-float-slow 8s ease-in-out infinite;
+}
+
+/* Shimmer sweep for badge */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-sweep {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26, 95, 255, 0.08) 40%,
+    rgba(26, 95, 255, 0.15) 50%,
+    rgba(26, 95, 255, 0.08) 60%,
+    transparent 100%
+  );
+  animation: shimmer-sweep 3s ease-in-out infinite;
+}
+
+/* Infinite marquee */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 20s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Responsive Adjustments ─── */
+@media (max-width: 1068px) {
+  .typography-hero-display { font-size: 72px; }
+  .typography-display-lg { font-size: 56px; }
+}
+
+@media (max-width: 734px) {
+  .typography-hero-display { font-size: 48px; }
+  .typography-display-lg { font-size: 36px; }
+  .section-tile { padding: 80px 0; }
+}
