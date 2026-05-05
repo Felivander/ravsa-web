@@ -47,11 +47,11 @@ export default function BeesSection() {
             plataforma b2b
           </motion.div>
           
-          <h2 className="text-[40px] md:text-[56px] font-bold text-[#1e293b] leading-tight tracking-tight mb-[24px]">
+          <h2 className="typography-display-lg text-[#1e293b] leading-tight tracking-tight mb-[24px]">
             Todo tu negocio en <br/><span className="text-[#1A5FFF]">una sola app</span>
           </h2>
           
-          <p className="text-[19px] text-[#64748b] leading-relaxed mb-[40px]">
+          <p className="typography-body text-[#64748b] leading-relaxed mb-[40px] lowercase">
             Descubrí mybees, la plataforma digital de cervecería y maltería quilmes diseñada para facilitarte la vida. Comprá más rápido y simple.
           </p>
 
@@ -65,7 +65,7 @@ export default function BeesSection() {
             {features.map((feature, i) => (
               <motion.li 
                 key={i} 
-                className="flex items-start gap-[12px]"
+                className="flex items-start justify-center lg:justify-start gap-[12px]"
                 variants={itemVariant}
               >
                 <motion.div
@@ -76,13 +76,13 @@ export default function BeesSection() {
                 >
                   <CheckCircle2 className="text-[#1A5FFF] flex-shrink-0 mt-[4px]" size={20} />
                 </motion.div>
-                <span className="text-[17px] text-[#475569]">{feature.charAt(0).toUpperCase() + feature.slice(1)}</span>
+                <span className="text-[16px] md:text-[17px] text-[#475569] lowercase">{feature}</span>
               </motion.li>
             ))}
           </motion.ul>
 
           <motion.div 
-            className="flex flex-wrap gap-[16px]"
+            className="flex flex-col sm:flex-row gap-[16px] w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -92,7 +92,7 @@ export default function BeesSection() {
               href="https://mybees.com.ar/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-[#1A5FFF] text-white px-[32px] py-[16px] font-medium text-[17px] hover:bg-[#154ecc] hover:shadow-lg transition-all duration-300 rounded-md"
+              className="bg-[#1A5FFF] text-white px-[32px] py-[18px] font-medium text-[17px] hover:bg-[#154ecc] hover:shadow-lg transition-all duration-300 rounded-xl text-center lowercase shadow-lg shadow-blue-500/20"
               whileHover={{ scale: 1.03, boxShadow: '0 8px 30px rgba(26,95,255,0.35)' }}
               whileTap={{ scale: 0.97 }}
             >
@@ -101,7 +101,7 @@ export default function BeesSection() {
             <motion.a 
               href="/pasoapaso_bees.pdf" 
               target="_blank" 
-              className="bg-white text-[#1A5FFF] border border-[#e2e8f0] px-[32px] py-[16px] font-medium text-[17px] hover:bg-[#f1f5f9] transition-all duration-300 flex items-center gap-[8px] group rounded-md"
+              className="bg-white text-[#1A5FFF] border border-[#e2e8f0] px-[32px] py-[18px] font-medium text-[17px] hover:bg-[#f1f5f9] transition-all duration-300 flex items-center justify-center gap-[8px] group rounded-xl lowercase"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >

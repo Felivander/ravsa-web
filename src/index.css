@@ -49,6 +49,19 @@
 
   /* Typography Substitutes (Inter) */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  /* Fluid Typography */
+  --font-size-hero: clamp(48px, 12vw, 96px);
+  --font-size-display: clamp(36px, 8vw, 64px);
+  --font-size-lead: clamp(17px, 3vw, 24px);
+  --font-size-body: clamp(15px, 2vw, 19px);
+
+  /* Elevation & Glass */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-blur: 20px;
+  --glass-border: rgba(255, 255, 255, 0.3);
+  
+  --glass-dark-bg: rgba(2, 6, 23, 0.75);
+  --glass-dark-border: rgba(255, 255, 255, 0.1);
 }
 
 /* ─── Base Reset & Globals ─── */
@@ -56,6 +69,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -66,78 +80,58 @@ body {
   letter-spacing: -0.022em;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
-/* Dots Pattern */
-.bg-dots {
-  background-image: radial-gradient(rgba(26, 95, 255, 0.15) 2px, transparent 2px);
-  background-size: 20px 20px;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  letter-spacing: -0.03em; /* Tighter */
-}
-
-/* ─── Apple Typography Classes ─── */
+/* ─── Apple Typography Classes (Fluid) ─── */
 .typography-hero-display {
-  font-size: 96px; /* Massive impact */
+  font-size: var(--font-size-hero);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
 
 .typography-display-lg {
-  font-size: 64px;
+  font-size: var(--font-size-display);
   font-weight: 600;
   line-height: 1.07;
   letter-spacing: -0.03em;
 }
 
 .typography-lead {
-  font-size: 28px;
+  font-size: var(--font-size-lead);
   font-weight: 400;
-  line-height: 1.14;
+  line-height: 1.25;
   letter-spacing: -0.01em;
 }
 
 .typography-body {
-  font-size: 19px; /* Bigger for readability */
+  font-size: var(--font-size-body);
   font-weight: 400;
   line-height: 1.47;
   letter-spacing: -0.02em;
 }
 
-.typography-body-strong {
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.24;
-}
-
-.typography-caption {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.43;
-}
-
 .typography-nav-link {
-  font-size: 16px; /* Bigger, readable */
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
 /* ─── Component Primitives ─── */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+.glass-panel-dark {
+  background: var(--glass-dark-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-dark-border);
+}
 .btn-primary {
   display: inline-flex;
   align-items: center;

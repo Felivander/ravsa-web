@@ -74,31 +74,53 @@ export default function Navbar({ isHidden }: { isHidden?: boolean }) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[55] bg-[#1A5FFF] flex flex-col pt-[80px] px-[24px] pb-[40px] md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[55] bg-black/40 backdrop-blur-md md:hidden"
+            onClick={() => setMobileOpen(false)}
           >
-            <div className="flex flex-col gap-[8px] mt-[40px]">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
-                  className="text-[32px] font-semibold text-white py-[16px] border-b border-white/20 lowercase"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <a 
-              href="#contacto" 
-              onClick={(e) => { e.preventDefault(); handleNav('#contacto'); }} 
-              className="mt-auto w-full text-center py-[16px] bg-white text-[#1A5FFF] font-bold text-[18px] rounded-lg lowercase"
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute right-0 top-0 bottom-0 w-[80%] max-w-[400px] bg-[#1A5FFF] shadow-2xl flex flex-col p-[32px]"
+              onClick={(e) => e.stopPropagation()}
             >
-              contactanos
-            </a>
+              <div className="flex flex-col gap-[8px] mt-[64px]">
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.1 }}
+                    onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
+                    className="text-[32px] font-bold text-white py-[12px] lowercase tracking-tight border-b border-white/10"
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+              
+              <motion.div 
+                className="mt-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <p className="text-white/60 text-[14px] mb-[16px] lowercase">evolución en distribución</p>
+                <a 
+                  href="#contacto" 
+                  onClick={(e) => { e.preventDefault(); handleNav('#contacto'); }} 
+                  className="block w-full text-center py-[18px] bg-white text-[#1A5FFF] font-bold text-[18px] rounded-xl shadow-lg hover:bg-white/90 transition-colors lowercase"
+                >
+                  contactanos
+                </a>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

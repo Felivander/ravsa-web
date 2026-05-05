@@ -50,25 +50,26 @@ export default function TrustBar() {
       <div className="container-apple mx-auto flex flex-col md:flex-row items-center justify-between gap-[40px]">
         
         {/* Stats with animated counters */}
-        <div className="flex flex-wrap justify-center md:justify-start items-center gap-[32px] md:gap-[60px] text-[#1e293b]">
+        {/* Stats with animated counters */}
+        <div className="flex flex-wrap justify-center md:justify-start items-center gap-[16px] md:gap-[40px] text-[#1e293b] w-full lg:w-auto">
           {stats.map((stat, i) => (
             <motion.div 
               key={i} 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col"
+              transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center md:items-start bg-white/50 backdrop-blur-sm border border-white/50 px-[24px] py-[16px] rounded-2xl shadow-sm min-w-[140px]"
             >
-              <span className="text-[32px] md:text-[40px] font-bold leading-none tracking-tight">
+              <span className="text-[28px] md:text-[32px] font-bold leading-none tracking-tight text-[#1A5FFF]">
                 <AnimatedCounter target={String(stat.count)} suffix={stat.suffix} />
               </span>
               <motion.span 
-                className="text-[14px] font-medium text-[#64748b]"
+                className="text-[13px] font-medium text-[#64748b] uppercase tracking-wider mt-[4px]"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.5 + i * 0.1 }}
+                transition={{ delay: 0.4 + i * 0.1 }}
               >
                 {stat.label}
               </motion.span>

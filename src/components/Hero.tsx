@@ -60,13 +60,13 @@ export default function Hero() {
         <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-[#1A5FFF] rounded-full opacity-[0.03] blur-[80px] hero-float" />
       </motion.div>
 
-      <div className="container-apple relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-center">
+      <div className="container-apple relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-[48px] lg:gap-[60px] items-center">
         {/* Left: Content */}
         <motion.div
           variants={textVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-start text-left"
+          className="flex flex-col items-center lg:items-start text-center lg:text-left"
         >
           {/* Badge with shimmer */}
           <motion.div
@@ -75,7 +75,7 @@ export default function Hero() {
           >
             <div className="absolute inset-0 shimmer-sweep" />
             <span className="w-[8px] h-[8px] bg-[#1A5FFF] animate-pulse rounded-full relative z-10"></span>
-            <span className="text-[13px] font-semibold text-[#475569] uppercase tracking-wider relative z-10">
+            <span className="text-[11px] md:text-[13px] font-semibold text-[#475569] uppercase tracking-wider relative z-10">
               distribuidor oficial quilmes
             </span>
           </motion.div>
@@ -83,7 +83,7 @@ export default function Hero() {
           {/* Headline word-by-word */}
           <motion.h1
             variants={textVariants}
-            className="text-[56px] lg:text-[72px] font-bold text-[#1e293b] leading-[1.05] tracking-tight mb-[24px]"
+            className="typography-hero-display text-[#1e293b] mb-[24px]"
           >
             {headlineWords.map((word, i) => {
               const isAccent = word.startsWith('|') && word.endsWith('|')
@@ -92,7 +92,7 @@ export default function Hero() {
                 <motion.span
                   key={i}
                   variants={wordVariant}
-                  className={`inline-block mr-[12px] ${isAccent ? 'text-[#1A5FFF]' : ''}`}
+                  className={`inline-block mr-[0.25em] ${isAccent ? 'text-[#1A5FFF]' : ''}`}
                 >
                   {clean}
                 </motion.span>
@@ -102,15 +102,15 @@ export default function Hero() {
 
           <motion.p
             variants={wordVariant}
-            className="text-[19px] text-[#64748b] leading-relaxed mb-[40px] max-w-[500px] lowercase"
+            className="typography-body text-[#64748b] mb-[40px] max-w-[500px] lowercase"
           >
             líder regional en la distribución de bebidas y alimentos. abastecemos más de 1700 comercios en entre ríos.
           </motion.p>
 
-          <motion.div variants={wordVariant} className="flex flex-wrap gap-[16px]">
+          <motion.div variants={wordVariant} className="flex flex-col sm:flex-row gap-[16px] w-full sm:w-auto">
             <motion.button
               onClick={() => handleCta('#productos')}
-              className="bg-[#1A5FFF] text-white px-[32px] py-[16px] font-medium text-[17px] hover:bg-[#154ecc] transition-all duration-300 flex items-center gap-[8px] lowercase rounded-md relative overflow-hidden group"
+              className="bg-[#1A5FFF] text-white px-[32px] py-[18px] font-medium text-[17px] hover:bg-[#154ecc] transition-all duration-300 flex items-center justify-center gap-[8px] lowercase rounded-xl relative overflow-hidden group w-full sm:w-auto shadow-lg shadow-blue-500/20"
               whileHover={{ scale: 1.03, boxShadow: '0 8px 30px rgba(26,95,255,0.35)' }}
               whileTap={{ scale: 0.97 }}
             >
@@ -124,7 +124,7 @@ export default function Hero() {
             </motion.button>
             <motion.button
               onClick={() => handleCta('https://mybees.com.ar/')}
-              className="bg-white text-[#1A5FFF] border-2 border-[#1A5FFF] px-[32px] py-[16px] font-medium text-[17px] hover:bg-[#1A5FFF] hover:text-white transition-all duration-300 flex items-center gap-[8px] lowercase group rounded-md"
+              className="bg-white text-[#1A5FFF] border-2 border-[#1A5FFF] px-[32px] py-[18px] font-medium text-[17px] hover:bg-[#1A5FFF] hover:text-white transition-all duration-300 flex items-center justify-center gap-[8px] lowercase group rounded-xl w-full sm:w-auto"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -134,14 +134,14 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right: Dynamic Image Composition with parallax */}
-        <div className="relative h-[600px] hidden lg:block">
+        {/* Right: Dynamic Image Composition */}
+        <div className="relative h-[400px] md:h-[600px] mt-[40px] lg:mt-0">
           <motion.div
             initial={{ opacity: 0, y: 60, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ y: parallaxY1 }}
-            className="absolute top-0 right-[10%] w-[70%] h-[70%] overflow-hidden shadow-2xl z-20 border-4 border-white rounded-[24px]"
+            className="absolute top-0 right-[5%] lg:right-[10%] w-[80%] lg:w-[70%] h-[80%] lg:h-[70%] overflow-hidden shadow-2xl z-20 border-[6px] border-white rounded-[32px] lg:rounded-[24px]"
           >
             <motion.img
               src="/images/slider-main/bg1.jpg"
@@ -156,7 +156,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ y: parallaxY2 }}
-            className="absolute bottom-[5%] left-0 w-[55%] h-[55%] overflow-hidden shadow-2xl z-30 border-4 border-white rounded-[24px]"
+            className="absolute bottom-[10%] lg:bottom-[5%] left-[5%] lg:left-0 w-[50%] lg:w-[55%] h-[50%] lg:h-[55%] overflow-hidden shadow-2xl z-30 border-[6px] border-white rounded-[32px] lg:rounded-[24px]"
           >
             <motion.img
               src="/images/slider-main/bg2.jpg"
@@ -166,24 +166,16 @@ export default function Hero() {
               transition={{ duration: 0.6 }}
             />
           </motion.div>
-          {/* Animated glow blob */}
+          
+          {/* Animated glow blobs - adjust for mobile */}
           <motion.div
-            className="absolute top-[20%] left-[-5%] w-[120px] h-[120px] bg-[#1A5FFF] blur-[80px] opacity-30 z-10 rounded-full"
+            className="absolute top-[20%] left-[-5%] w-[120px] h-[120px] bg-[#1A5FFF] blur-[80px] opacity-20 lg:opacity-30 z-10 rounded-full"
             animate={{
               x: [0, 20, 0, -20, 0],
               y: [0, -15, 0, 15, 0],
               scale: [1, 1.2, 1, 0.9, 1],
             }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          {/* Secondary floating blob */}
-          <motion.div
-            className="absolute bottom-[10%] right-[5%] w-[80px] h-[80px] bg-[#1A5FFF] blur-[60px] opacity-20 z-10 rounded-full"
-            animate={{
-              x: [0, -15, 0, 15, 0],
-              y: [0, 20, 0, -20, 0],
-            }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
           />
         </div>
       </div>
