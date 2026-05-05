@@ -18,7 +18,8 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
   useEffect(() => {
     // Start exit sequence earlier to show the paths
     const startExitTimer = setTimeout(() => setIsExiting(true), 2500)
-    const timer = setTimeout(() => onComplete(), 3500)
+    // Wait for the slow 2s animation + stagger + buffer
+    const timer = setTimeout(() => onComplete(), 5500)
 
     return () => {
       clearTimeout(startExitTimer)
@@ -30,7 +31,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
     <motion.div
       className="fixed inset-0 z-[100] bg-[#1A5FFF] flex flex-col items-center justify-center overflow-hidden"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, transition: { duration: 0.8, ease: 'easeInOut' } }}
     >
       {/* Background radial glow */}
       <motion.div
@@ -53,12 +54,12 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
                 key={i}
                 d={`M 0 0 C ${tr.cp1.x} ${tr.cp1.y}, ${tr.cp2.x} ${tr.cp2.y}, ${tr.x} ${tr.y}`}
                 stroke="white"
-                strokeWidth="3"
+                strokeWidth="2"
                 fill="none"
-                strokeDasharray="10,10"
+                strokeDasharray="12,12"
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={isExiting ? { pathLength: 1, opacity: 0.4 } : {}}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
+                animate={isExiting ? { pathLength: 1, opacity: 0.3 } : {}}
+                transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1], delay: i * 0.15 }}
               />
             ))}
           </g>
@@ -74,15 +75,15 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
                     opacity: 0,
                     x: exitTrajectories[i].x,
                     y: exitTrajectories[i].y,
-                    rotate: i % 2 === 0 ? -20 : 20,
-                    scale: 0.5,
-                    filter: 'blur(8px)',
+                    rotate: i % 2 === 0 ? -30 : 30,
+                    scale: 0.4,
+                    filter: 'blur(12px)',
                   }
                 : { opacity: 1, y: 0, filter: 'blur(0px)' }
               }
               transition={isExiting 
-                ? { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }
-                : { duration: 0.8, delay: 0.2 + i * 0.1, ease: [0.22, 1, 0.36, 1] }
+                ? { duration: 2.2, ease: [0.22, 1, 0.36, 1], delay: i * 0.15 }
+                : { duration: 1, delay: 0.3 + i * 0.12, ease: [0.22, 1, 0.36, 1] }
               }
               style={{ display: 'inline-block' }}
             >
